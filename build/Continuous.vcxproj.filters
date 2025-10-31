@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\build\CMakeFiles\45c1b04c46f04c8d4da9eef2ff04144c\Continuous.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\build\CMakeFiles\Continuous" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{D5D7AD7C-B759-3DA1-A6F8-81B855D65EE5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

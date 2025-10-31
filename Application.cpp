@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "imgui/imgui.h"
 #include "classes/TicTacToe.h"
+#include "classes/Connect4.h"
 #include "classes/Checkers.h"
 #include "classes/Othello.h"
 
@@ -46,6 +47,10 @@ namespace ClassGame {
                 if (!game) {
                     if (ImGui::Button("Start Tic-Tac-Toe")) {
                         game = new TicTacToe();
+                        game->setUpBoard();
+                    }
+                    if (ImGui::Button("Start Connect4")) {
+                        game = new Connect4();
                         game->setUpBoard();
                     }
                     if (ImGui::Button("Start Checkers")) {

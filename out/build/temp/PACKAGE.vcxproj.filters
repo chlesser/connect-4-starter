@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\out\build\temp\CMakeFiles\4d0b2767e39ba218df5fe8ed30a2785a\PACKAGE_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{DC490C1C-4837-3D91-B6F3-46119DA62366}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

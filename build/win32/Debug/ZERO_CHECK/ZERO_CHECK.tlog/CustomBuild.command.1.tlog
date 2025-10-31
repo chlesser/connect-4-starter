@@ -1,0 +1,10 @@
+^C:\USERS\HYDRI\ONEDRIVE\DOCUMENTS\GITHUB\CONNECT-4-STARTER\BUILD\CMAKEFILES\45C1B04C46F04C8D4DA9EEF2FF04144C\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/hydri/OneDrive/Documents/GitHub/connect-4-starter -BC:/Users/hydri/OneDrive/Documents/GitHub/connect-4-starter/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/hydri/OneDrive/Documents/GitHub/connect-4-starter/build/tictactoe.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

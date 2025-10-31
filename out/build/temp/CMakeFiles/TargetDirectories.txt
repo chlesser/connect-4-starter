@@ -1,0 +1,9 @@
+C:/Users/hydri/OneDrive/Documents/GitHub/connect-4-starter/out/build/temp/CMakeFiles/Experimental.dir
+C:/Users/hydri/OneDrive/Documents/GitHub/connect-4-starter/out/build/temp/CMakeFiles/Nightly.dir
+C:/Users/hydri/OneDrive/Documents/GitHub/connect-4-starter/out/build/temp/CMakeFiles/Continuous.dir
+C:/Users/hydri/OneDrive/Documents/GitHub/connect-4-starter/out/build/temp/CMakeFiles/NightlyMemoryCheck.dir
+C:/Users/hydri/OneDrive/Documents/GitHub/connect-4-starter/out/build/temp/CMakeFiles/demo.dir
+C:/Users/hydri/OneDrive/Documents/GitHub/connect-4-starter/out/build/temp/CMakeFiles/PACKAGE.dir
+C:/Users/hydri/OneDrive/Documents/GitHub/connect-4-starter/out/build/temp/CMakeFiles/RUN_TESTS.dir
+C:/Users/hydri/OneDrive/Documents/GitHub/connect-4-starter/out/build/temp/CMakeFiles/ALL_BUILD.dir
+C:/Users/hydri/OneDrive/Documents/GitHub/connect-4-starter/out/build/temp/CMakeFiles/ZERO_CHECK.dir
