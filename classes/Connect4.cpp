@@ -100,11 +100,11 @@ Player* Connect4::ownerAt(int x, int y) const
 Player* Connect4::checkForWinner()
 {
     static const int winningQuarts[10][4] =  { {0,1,2,3}, {4,5,6,7}, {8,9,10,11}, {12,13,14,15},  // rows
-                                                {0,5,9,13}, {1,5,9,13}, {2,6,10,14}, {3,7,11,15},  // cols
-                                                {0,5,10,15}, {12,9,6,3} };         // diagonals
+                                                {0,4,8,12}, {1,5,9,13}, {2,6,10,14}, {3,7,11,15},  // cols
+                                                {0,5,10,15}, {12,9,6,3} }; //Diagonals
     //this uses the victory checking method by graeme devine.
     //noticably, macroY counts down. This is to ensure that victories on the bottom are checked for first.
-    for(int macroY = 3; macroY > 0; macroY--) {
+    for(int macroY = 2; macroY >= 0; macroY--) {
         for(int macroX = 0; macroX < 4; macroX++) {
             //now that the 12 4x4 grids are found, we can check individually.
             for( int i=0; i<10; i++ ) {
@@ -185,18 +185,19 @@ void Connect4::setStateString(const std::string &s)
 //
 void Connect4::updateAI() 
 {
-    int bestVal = -1000;
+    int bestVal = -10000000;
     BitHolder* bestMove = nullptr;
     std::string state = stateString();
 
     // Traverse all cells, evaluate minimax function for all empty cells
+    std::cout << "BREAK" << std::endl;
     _grid->forEachSquare([&](ChessSquare* square, int x, int y) {
         int index = y * 7 + x;
         //we add a few more parameters here. First, we only continue if the index is in the final row, or if the next down is another piece.
-        if((index + 7 > 42 || state[index + 7] == '0') && state[index] == '0') {
+        if((index >= 35 || state[index + 7] != '0') && state[index] == '0') {
             // Make the move
             state[index] = '2';
-            int moveVal = -negamax(state, 0, HUMAN_PLAYER);
+            int moveVal = -negamax(state, 0, AI_PLAYER);
             // Undo the move
             state[index] = '0';
             // If the value of the current move is more than the best value, update best
@@ -204,6 +205,7 @@ void Connect4::updateAI()
                 bestMove = square;
                 bestVal = moveVal;
             }
+            std::cout << "Column " << x << " has value " << moveVal << std::endl;
         }
     });
 
@@ -219,21 +221,72 @@ bool Connect4::isAIBoardFull(const std::string& state) {
     return state.find('0') == std::string::npos;
 }
 
-int Connect4::evaluateAIBoard(const std::string& state) {
-    return 0;
+int Connect4::evaluateAIBoard(const std::string& state, int playerColor) {
+    static const int winningQuarts[10][4] =  { {0,1,2,3}, {4,5,6,7}, {8,9,10,11}, {12,13,14,15},  // rows
+                                                {0,4,8,12}, {1,5,9,13}, {2,6,10,14}, {3,7,11,15},  // cols
+                                                {0,5,10,15}, {12,9,6,3} };
+    int accum = 0;
+    const char friendly = playerColor == HUMAN_PLAYER ? '1' : '2';
+    const char enemy = playerColor == HUMAN_PLAYER ? '2' : '1';
+
+    for(int macroY = 2; macroY >= 0; macroY--) {
+        for(int macroX = 0; macroX < 4; macroX++) {
+            //now that the 12 4x4 grids are found, we can check individually.
+            for( int i=0; i<10; i++) {
+                const int *quart = winningQuarts[i];
+
+                int linedUp = 0;
+                int index = 0;
+                for(int p = 0; p < 4; p++)
+                {
+                    int microX = quart[p] % 4;
+                    int microY = quart[p] / 4;
+                    int realX = microX + macroX;
+                    int realY = microY + macroY;
+                    index = (realY * 7) + realX;
+
+                    char occupant = state[index];
+                    if(occupant == friendly)
+                        linedUp++;
+                    if(occupant == enemy) {
+                        linedUp = 0;
+                        break;
+                    }
+                }
+                switch (linedUp)
+                {
+                    case 0:
+                        accum += 0;
+                        break;
+                    case 1:
+                        accum += 1;
+                        break;
+                    case 2:
+                        accum += 10;
+                        break;
+                    case 3:
+                        accum += 100;
+                        break;
+                    case 4:
+                        accum += 10000;
+                        break;
+                }
+            }
+        }
+    }
+    std::string IAM = playerColor == HUMAN_PLAYER ? "HUMAN" : "AI";
+    std::cout << IAM << " sees a state of " << accum << std::endl;
+    return accum;
 }
-int scoreRow(const std::string& state, int index) {}
-int scoreColumn(const std::string& state, int index) {}
-int scoreDiag(const std::string& state, int index) {}
 
 //
 // player is the current player's number (AI or human)
 //
 int Connect4::negamax(std::string& state, int depth, int playerColor) 
 {
+    int score = evaluateAIBoard(state, playerColor);
     // Check if AI wins, human wins, or draw
-    if(depth == 3) { 
-        int score = evaluateAIBoard(state);
+    if(depth == 2) { 
         // A winning state is a loss for the player whose turn it is.
         // The previous player made the winning move.
         return -score; 
@@ -243,7 +296,7 @@ int Connect4::negamax(std::string& state, int depth, int playerColor)
         return 0; // Draw
     }
 
-    int bestVal = -1000; // Min value
+    int bestVal = -10000000; // Min value
     int columnModification[] = { 3,4,2,5,1,6,0 };
     for(int i=0; i<7; i++) {
         int column = columnModification[i];

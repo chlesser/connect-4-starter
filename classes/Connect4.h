@@ -21,9 +21,9 @@ public:
     void        stopGame() override;
 
 	void        updateAI() override;
-    bool        gameHasAI() override { return false; }
+    bool        gameHasAI() override { return true; }
     bool        isAIBoardFull(const std::string& state);
-    int         evaluateAIBoard(const std::string& state);
+    int         evaluateAIBoard(const std::string& state, int playercolor);
     Grid* getGrid() override { return _grid; }
 private:
     Bit *       PieceForPlayer(const int playerNumber);
