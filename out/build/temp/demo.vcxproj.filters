@@ -37,6 +37,9 @@
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\ChessSquare.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\Connect4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\Grid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -47,9 +50,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\Othello.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\Connect4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\imgui\imgui_impl_dx11.cpp">

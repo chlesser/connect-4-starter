@@ -21,11 +21,13 @@ public:
     void        stopGame() override;
 
 	void        updateAI() override;
-    bool        gameHasAI() override { return true; }
+    bool        gameHasAI() override { return false; }
+    bool        isAIBoardFull(const std::string& state);
+    int         evaluateAIBoard(const std::string& state);
     Grid* getGrid() override { return _grid; }
 private:
     Bit *       PieceForPlayer(const int playerNumber);
-    Player*     ownerAt(int index ) const;
+    Player*     ownerAt(int x, int y ) const;
     int         negamax(std::string& state, int depth, int playerColor);
 
     Grid*       _grid;

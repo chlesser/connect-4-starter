@@ -384,11 +384,11 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\Sprite.cpp" />
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\Square.cpp" />
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\ChessSquare.cpp" />
+    <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\Connect4.cpp" />
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\Grid.cpp" />
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\TicTacToe.cpp" />
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\Checkers.cpp" />
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\Othello.cpp" />
-    <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\classes\Connect4.cpp" />
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\imgui\imgui_impl_dx11.cpp" />
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\main_win32.cpp" />
     <ClCompile Include="C:\Users\hydri\OneDrive\Documents\GitHub\connect-4-starter\imgui\imgui_impl_win32.cpp" />
