@@ -95,10 +95,10 @@ Player* Connect4::checkForWinner()
 {
     static const int winningQuarts[10][4] =  { {0,1,2,3}, {4,5,6,7}, {8,9,10,11}, {12,13,14,15},  // rows
                                                 {0,4,8,12}, {1,5,9,13}, {2,6,10,14}, {3,7,11,15},  // cols
-                                                {0,5,10,15}, {12,9,6,3} }; //Diagonals
+                                                {0,5,10,15}, {12,9,6,3} };
     //this uses the victory checking method by graeme devine.
     //noticably, macroY counts down. This is to ensure that victories on the bottom are checked for first.
-    for(int macroY = 2; macroY >= 0; macroY--) {
+    for(int macroY = 0; macroY < 3; macroY++) {
         for(int macroX = 0; macroX < 4; macroX++) {
             //now that the 12 4x4 grids are found, we can check individually.
             for( int i=0; i<10; i++ ) {
@@ -191,7 +191,7 @@ void Connect4::updateAI()
             // Make the move
             state[index] = '2';
             //alpha beta
-            int moveVal = -negamax(state, 0, -1000000, 1000000, AI_PLAYER);
+            int moveVal = -negamax(state, 0, -1000000, 1000000, HUMAN_PLAYER);
             // Undo the move
             state[index] = '0';
             // If the value of the current move is more than the best value, update best
@@ -223,7 +223,7 @@ int Connect4::evaluateAIBoard(const std::string& state, int playerColor) {
     const char friendly = playerColor == HUMAN_PLAYER ? '1' : '2';
     const char enemy = playerColor == HUMAN_PLAYER ? '2' : '1';
 
-    for(int macroY = 2; macroY >= 0; macroY--) {
+    for(int macroY = 0; macroY < 3; macroY++) {
         for(int macroX = 0; macroX < 4; macroX++) {
             //now that the 12 4x4 grids are found, we can check individually.
             for( int i=0; i<10; i++) {
@@ -248,6 +248,10 @@ int Connect4::evaluateAIBoard(const std::string& state, int playerColor) {
                         break;
                     }
                 }
+                if(allyLinedUp == 4) {
+                    accum = 100000;
+                    return accum;
+                }
                 accum += pointValues[allyLinedUp] * (0.8 + (0.1 * macroY));
                 //accum -= pointValues[enemyLinedUp];
             }
@@ -262,11 +266,15 @@ int Connect4::evaluateAIBoard(const std::string& state, int playerColor) {
 int Connect4::negamax(std::string& state, int depth, int alpha, int beta, int playerColor) 
 {
     int score = evaluateAIBoard(state, playerColor);
-    // Check if AI wins, human wins, or draw
-    if(depth == 7 || score >= 100000) { 
-        // A winning state is a loss for the player whose turn it is.
-        // The previous player made the winning move.
-        return -score; 
+    // Check if win
+    if(score == 100000)
+    {
+        //std::cout << "SOMEONE WILL WIN: " << (playerColor == HUMAN_PLAYER ? "HUMAN" : "AI") << std::endl;
+        return score;
+    }
+    if(depth == 6) { 
+        // Depth
+        return score; 
     }
 
     if(isAIBoardFull(state)) {
@@ -274,7 +282,7 @@ int Connect4::negamax(std::string& state, int depth, int alpha, int beta, int pl
     }
 
     int bestVal = -1000000; // Min value
-    int columnModification[] = { 3,4,2,5,1,6,0 };
+    int columnModification[] = { 3,4,2,5,1,6,0};
     for(int i=0; i<7; i++) {
         int column = columnModification[i];
             // Check if cell is empty
