@@ -190,6 +190,7 @@ void Connect4::updateAI()
         if((index >= 35 || state[index + 7] != '0') && state[index] == '0') {
             // Make the move
             state[index] = '2';
+            //alpha beta
             int moveVal = -negamax(state, 0, -1000000, 1000000, AI_PLAYER);
             // Undo the move
             state[index] = '0';
