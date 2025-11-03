@@ -247,7 +247,7 @@ int Connect4::evaluateAIBoard(const std::string& state, int playerColor) {
                         break;
                     }
                 }
-                accum += pointValues[allyLinedUp] * (1 - (0.1 * macroY));
+                accum += pointValues[allyLinedUp] * (0.8 + (0.1 * macroY));
                 //accum -= pointValues[enemyLinedUp];
             }
         }
@@ -262,7 +262,7 @@ int Connect4::negamax(std::string& state, int depth, int alpha, int beta, int pl
 {
     int score = evaluateAIBoard(state, playerColor);
     // Check if AI wins, human wins, or draw
-    if(depth == 7 || score > 100000) { 
+    if(depth == 7 || score >= 100000) { 
         // A winning state is a loss for the player whose turn it is.
         // The previous player made the winning move.
         return -score; 
