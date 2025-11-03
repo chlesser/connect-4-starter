@@ -272,7 +272,7 @@ int Connect4::negamax(std::string& state, int depth, int alpha, int beta, int pl
         //std::cout << "SOMEONE WILL WIN: " << (playerColor == HUMAN_PLAYER ? "HUMAN" : "AI") << std::endl;
         return score;
     }
-    if(depth == 6) { 
+    if(depth == 8) { 
         // Depth
         return score; 
     }
